@@ -31,13 +31,13 @@ with open("/workspace/nilk_data/train.json") as f, open("train.json", "w") as o,
         context = line["context"]
         offset = line["offset"]
 
-        if id not in label_map:
-            print("Missing wikidata id: " + id)
-            continue
-
         if not is_nil:
             title, text = label_map[id]
 
             o.write(json.dumps({"context_left": context[:offset], "context_right": context[offset + len(mention):], "mention": mention, "label_title": title, "label": text, "label_id": id}) + "\n")
         else:
+            if id not in label_map:
+                print("Missing wikidata id: " + id)
+                continue
+
             on.write(json.dumps({"context_left": context[:offset], "context_right": context[offset + len(mention):], "mention": mention}) + "\n")
