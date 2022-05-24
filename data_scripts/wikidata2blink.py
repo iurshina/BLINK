@@ -12,7 +12,8 @@ with gzip.open("/workspace/nilk_data/wikidata-20170213-all.json.gz", 'rb', 'rb')
 
         if "en" not in obj["labels"].keys():
             continue
-        print(obj)
+        if "en" not in obj["descriptions"].keys():
+            continue
 
         id = obj["id"]
         name = obj["labels"]["en"]["value"]
