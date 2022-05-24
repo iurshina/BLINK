@@ -8,16 +8,16 @@ import torch
 import os
 import numpy as np
 
-from pytorch_transformers.modeling_bert import (
-    BertPreTrainedModel,
-    BertConfig,
-    BertModel,
-)
-from pytorch_transformers.tokenization_bert import BertTokenizer
+# from pytorch_transformers.modeling_bert import (
+#     BertPreTrainedModel,
+#     BertConfig,
+#     BertModel,
+# )
+# from pytorch_transformers.tokenization_bert import BertTokenizer
 from torch import nn
 
-from pytorch_transformers.file_utils import PYTORCH_PRETRAINED_BERT_CACHE
-from pytorch_transformers.optimization import AdamW
+# from pytorch_transformers.file_utils import PYTORCH_PRETRAINED_BERT_CACHE
+# from pytorch_transformers.optimization import AdamW
 
 
 patterns_optimizer = {
@@ -67,14 +67,13 @@ def get_bert_optimizer(models, type_optimization, learning_rate, fp16=False):
         {'params': parameters_with_decay, 'weight_decay': 0.01},
         {'params': parameters_without_decay, 'weight_decay': 0.0},
     ]
-    optimizer = AdamW(
+    optimizer = torch.optim.AdamW(
         optimizer_grouped_parameters, 
-        lr=learning_rate, 
-        correct_bias=False
+        lr=learning_rate
     )
 
-    if fp16:
-        optimizer = fp16_optimizer_wrapper(optimizer)
+    # if fp16:
+    #     optimizer = fp16_optimizer_wrapper(optimizer)
 
     return optimizer
 
