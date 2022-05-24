@@ -30,6 +30,11 @@ with open("/workspace/nilk_data/train.json") as f, open("train.json", "w") as o,
         mention = line["mention"]
         context = line["context"]
         offset = line["offset"]
+
+        if id not in label_map:
+            print("Missing wikidata id: " + id)
+            continue
+
         if not is_nil:
             title, text = label_map[id]
 
