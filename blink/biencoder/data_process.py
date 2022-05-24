@@ -141,7 +141,7 @@ def process_mention_data(
         label_tokens = get_candidate_representation(
             label, tokenizer, max_cand_length, title,
         )
-        label_idx = int(sample["label_id"])
+        label_idx = int(sample["label_id"].replace("Q", ""))
 
         record = {
             "context": context_tokens,
