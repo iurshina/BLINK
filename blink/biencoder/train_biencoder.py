@@ -22,10 +22,10 @@ from collections import OrderedDict
 
 from torch.utils.data import DataLoader, RandomSampler, SequentialSampler, TensorDataset
 
-from pytorch_transformers.file_utils import PYTORCH_PRETRAINED_BERT_CACHE
-from pytorch_transformers.optimization import WarmupLinearSchedule
-from pytorch_transformers.tokenization_bert import BertTokenizer
-from pytorch_transformers.modeling_utils import WEIGHTS_NAME
+# from pytorch_transformers.file_utils import PYTORCH_PRETRAINED_BERT_CACHE
+# from pytorch_transformers.optimization import WarmupLinearSchedule
+# from pytorch_transformers.tokenization_bert import BertTokenizer
+# from pytorch_transformers.modeling_utils import WEIGHTS_NAME
 
 from blink.biencoder.biencoder import BiEncoderRanker, load_biencoder
 import logging
@@ -293,8 +293,7 @@ def main(params):
     logger.info("Best performance in epoch: {}".format(best_epoch_idx))
     params["path_to_model"] = os.path.join(
         model_output_path, 
-        "epoch_{}".format(best_epoch_idx),
-        WEIGHTS_NAME,
+        "epoch_{}".format(best_epoch_idx)
     )
     reranker = load_biencoder(params)
     utils.save_model(reranker.model, tokenizer, model_output_path)
