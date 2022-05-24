@@ -23,7 +23,10 @@ with open("documents.json") as f:
 
 with open("/workspace/nilk_data/train.json") as f, open("train.json", "w") as o, open("train_nil.json", "w") as on:
     for l in f:
-        line = json.loads(l)
+        try:
+            line = json.loads(l)
+        except:
+            print(l)
 
         id = line["wikidata_id"]
         is_nil = line["nil"]
