@@ -21,7 +21,7 @@ with open("documents.json") as f:
         label_map[id] = (title, text)
 
 
-with open("/workspace/nilk_data/test.json") as f, open("test.json", "w") as o, open("test_nil.json", "w") as on:
+with open("/workspace/nilk_data/valid.json") as f, open("valid.json", "w") as o, open("test_nil.json", "w") as on:
     for l in f:
         line = json.loads(l)
 
