@@ -85,7 +85,7 @@ class ElqParser(argparse.ArgumentParser):
         )
         parser.add_argument(
             "--zeshel",
-            default=True,
+            default=False,
             type=bool,
             help="Whether the dataset is from zeroshot.",
         )
