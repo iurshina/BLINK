@@ -14,7 +14,7 @@ import logging
 import numpy as np
 
 from collections import OrderedDict
-from pytorch_transformers.modeling_utils import CONFIG_NAME, WEIGHTS_NAME
+# from pytorch_transformers.modeling_utils import CONFIG_NAME, WEIGHTS_NAME
 from tqdm import tqdm
 
 from blink.candidate_ranking.bert_reranking import BertReranker
@@ -102,8 +102,8 @@ def save_model(model, tokenizer, output_dir):
         os.makedirs(output_dir)
 
     model_to_save = model.module if hasattr(model, "module") else model
-    output_model_file = os.path.join(output_dir, WEIGHTS_NAME)
-    output_config_file = os.path.join(output_dir, CONFIG_NAME)
+    output_model_file = os.path.join(output_dir)
+    output_config_file = os.path.join(output_dir)
     torch.save(model_to_save.state_dict(), output_model_file)
     model_to_save.config.to_json_file(output_config_file)
     tokenizer.save_vocabulary(output_dir)
