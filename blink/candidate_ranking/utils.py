@@ -104,8 +104,8 @@ def save_model(model, tokenizer, output_dir):
     model_to_save = model.module if hasattr(model, "module") else model
     output_model_file = os.path.join(output_dir)
     output_config_file = os.path.join(output_dir)
-    torch.save(model_to_save.state_dict(), output_model_file)
-    model_to_save.config.to_json_file(output_config_file)
+    torch.save(model_to_save.state_dict(), output_model_file + ".pt")
+    model_to_save.config.to_json_file(output_config_file + "_conf.json")
     tokenizer.save_vocabulary(output_dir)
 
 

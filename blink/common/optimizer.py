@@ -30,7 +30,7 @@ patterns_optimizer = {
         'encoder.layer.9.',
         'encoder.layer.8',
     ],
-    'all_encoder_layers': ['additional', 'bert_model.encoder.layer'],
+    'all_encoder_layers': ['additional', 'bert_model.encoder.layer', 'bert_model.transformer.layer'],
     'all': ['additional', 'bert_model.encoder.layer', 'bert_model.embeddings'],
 }
 

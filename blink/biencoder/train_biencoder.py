@@ -27,6 +27,8 @@ from torch.utils.data import DataLoader, RandomSampler, SequentialSampler, Tenso
 # from pytorch_transformers.tokenization_bert import BertTokenizer
 # from pytorch_transformers.modeling_utils import WEIGHTS_NAME
 
+from transformers import get_linear_schedule_with_warmup
+
 from blink.biencoder.biencoder import BiEncoderRanker, load_biencoder
 import logging
 
@@ -98,8 +100,8 @@ def get_scheduler(params, optimizer, len_train_data, logger):
     num_train_steps = int(len_train_data / batch_size / grad_acc) * epochs
     num_warmup_steps = int(num_train_steps * params["warmup_proportion"])
 
-    scheduler = WarmupLinearSchedule(
-        optimizer, warmup_steps=num_warmup_steps, t_total=num_train_steps,
+    scheduler = get_linear_schedule_with_warmup(
+        optimizer, num_warmup_steps=num_warmup_steps, num_training_steps=num_train_steps,
     )
     logger.info(" Num optimization steps = %d" % num_train_steps)
     logger.info(" Num warmup steps = %d", num_warmup_steps)
