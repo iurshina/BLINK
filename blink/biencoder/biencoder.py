@@ -154,7 +154,7 @@ class BiEncoderRanker(torch.nn.Module):
             text_vecs, self.NULL_IDX
         )
         embedding_ctxt, _ = self.model(
-            token_idx_ctxt, segment_idx_ctxt, mask_ctxt, None, None, None
+            token_idx_ctxt #, segment_idx_ctxt, mask_ctxt, None, None, None
         )
 
         # Candidate encoding is given, do not need to re-compute
@@ -167,7 +167,7 @@ class BiEncoderRanker(torch.nn.Module):
             cand_vecs, self.NULL_IDX
         )
         _, embedding_cands = self.model(
-            None, None, None, token_idx_cands, segment_idx_cands, mask_cands
+            None, None, None, token_idx_cands #, segment_idx_cands, mask_cands
         )
         if random_negs:
             # train on random negatives
