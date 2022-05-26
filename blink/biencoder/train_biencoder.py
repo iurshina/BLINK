@@ -225,7 +225,12 @@ def main(params):
         else:
             iter_ = tqdm(train_dataloader, desc="Batch")
 
+        sample_size = int(len(train_data) * 0.2)
         for step, batch in enumerate(iter_):
+            if step > sample_size:
+                logger.info("Step " + str(step) + " reached, stopping training...")
+                break
+
             batch = tuple(t.to(device) for t in batch)
             context_input, candidate_input, _ = batch
             loss, _ = reranker(context_input, candidate_input)
