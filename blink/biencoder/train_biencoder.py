@@ -225,7 +225,9 @@ def main(params):
         else:
             iter_ = tqdm(train_dataloader, desc="Batch")
 
-        sample_size = int(len(train_data) * 0.2)
+        sample_size = int(len(train_tensor_data) * 0.2)
+        print("Sample size: " + str(sample_size))
+        logger.info("Sample size: " + str(sample_size))
         for step, batch in enumerate(iter_):
             if step > sample_size:
                 logger.info("Step " + str(step) + " reached, stopping training...")
