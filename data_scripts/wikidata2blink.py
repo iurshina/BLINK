@@ -25,7 +25,7 @@ with gzip.open("/workspace/nilk_data/wikidata-20170213-all.json.gz", 'rb', 'rb')
 
         description = obj["descriptions"]["en"]["value"]
 
-        o.write(json.dumps({"document_id": id, "title": name, "text": description}) + "\n")
+        o.write(json.dumps({"idx": id, "title": name, "text": description}) + "\n")
 
 
 
