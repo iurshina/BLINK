@@ -9,6 +9,7 @@
 #
 
 #!!!! The label_id corresponds to the line number (0-indexed) for the label in documents.jsonl. For e.g.,
+# https://github.com/facebookresearch/BLINK/issues/116
 
 import json
 
@@ -27,7 +28,7 @@ with open("documents.json") as f:
         line_number += 1
 
 
-with open("/workspace/nilk_data/train.json") as f, open("train.json", "w") as o, open("train_nil.json", "w") as on:
+with open("/workspace/nilk_data/valid.json") as f, open("valid.json", "w") as o, open("valid_nil.json", "w") as on:
     for l in f:
         try:
             line = json.loads(l)
