@@ -28,7 +28,7 @@ with open("documents.json") as f:
         line_number += 1
 
 
-with open("/workspace/nilk_data/valid.json") as f, open("valid.json", "w") as o, open("valid_nil.json", "w") as on:
+with open("/workspace/nilk_data/test.json") as f, open("test.json", "w") as o, open("test_nil.json", "w") as on:
     for l in f:
         try:
             line = json.loads(l)
