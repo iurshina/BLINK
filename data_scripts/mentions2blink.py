@@ -7,10 +7,14 @@
 #   "label_id": 304371
 # }
 #
+
+#!!!! The label_id corresponds to the line number (0-indexed) for the label in documents.jsonl. For e.g.,
+
 import json
 
 label_map = {}
 
+line_number = 0
 with open("documents.json") as f:
     for l in f:
         line = json.loads(l)
@@ -18,7 +22,9 @@ with open("documents.json") as f:
         title = line["title"]
         text = line["text"]
 
-        label_map[id] = (title, text)
+        label_map[id] = (title, text, line_number)
+
+        line_number += 1
 
 
 with open("/workspace/nilk_data/train.json") as f, open("train.json", "w") as o, open("train_nil.json", "w") as on:
@@ -39,8 +45,8 @@ with open("/workspace/nilk_data/train.json") as f, open("train.json", "w") as o,
                 print("Missing wikidata id: " + id)
                 continue
 
-            title, text = label_map[id]
+            title, text, line_number = label_map[id]
 
-            o.write(json.dumps({"context_left": context[:offset], "context_right": context[offset + len(mention):], "mention": mention, "label_title": title, "label": text, "label_id": id}) + "\n")
+            o.write(json.dumps({"context_left": context[:offset], "context_right": context[offset + len(mention):], "mention": mention, "label_title": title, "label": text, "label_id": line_number}) + "\n")
         else:
             on.write(json.dumps({"context_left": context[:offset], "context_right": context[offset + len(mention):], "mention": mention}) + "\n")
