@@ -44,7 +44,7 @@ with open("documents_20_percent.json") as f:
 #         f.write(json.dumps({"document_id": k, "title": title, "text": text}) + "\n")
 
 
-with open("/workspace/nilk_data/valid.json") as f, open("valid_20.jsonL", "w") as o, open("valid_nil_20.jsonL", "w") as on:
+with open("/workspace/nilk_data/train.json") as f, open("train_20.jsonL", "w") as o, open("train_nil_20.jsonL", "w") as on:
     for l in f:
         try:
             line = json.loads(l)
