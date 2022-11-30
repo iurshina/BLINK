@@ -28,7 +28,7 @@ with open("documents.json") as f:
         line_number += 1
 
 
-label_map = dict(list(label_map.items())[:len(label_map.items()) * 0.2])
+label_map = dict(list(label_map.items())[:int(len(list(label_map.items())) * 0.2)])
 
 label_map_20 = {}
 
