@@ -16,7 +16,7 @@ import json
 label_map = {}
 
 line_number = 0
-with open("documents.json") as f:
+with open("documents_20_percent.json") as f:
     for l in f:
         line = json.loads(l)
         id = line["document_id"]
@@ -28,23 +28,23 @@ with open("documents.json") as f:
         line_number += 1
 
 
-label_map = dict(list(label_map.items())[:int(len(list(label_map.items())) * 0.2)])
+# label_map = dict(list(label_map.items())[:int(len(list(label_map.items())) * 0.2)])
+#
+# label_map_20 = {}
+#
+# line_number = 0
+# with open("documents_20_percent.json", "w") as f:
+#     for k, v in label_map.items():
+#         title, text, line_number = v
+#
+#         label_map_20[k] = (title, text, line_number)
+#
+#         line_number += 1
+#
+#         f.write(json.dumps({"document_id": k, "title": title, "text": text}) + "\n")
 
-label_map_20 = {}
 
-line_number = 0
-with open("documents_20_percent.json", "w") as f:
-    for k, v in label_map.items():
-        title, text, line_number = v
-
-        label_map_20[k] = (title, text, line_number)
-
-        line_number += 1
-
-        f.write(json.dumps({"document_id": k, "title": title, "text": text}) + "\n")
-
-
-with open("/workspace/nilk_data/test.json") as f, open("test_20.jsonL", "w") as o, open("test_nil_20.jsonL", "w") as on:
+with open("/workspace/nilk_data/train.json") as f, open("train_20.jsonL", "w") as o, open("train_nil_20.jsonL", "w") as on:
     for l in f:
         try:
             line = json.loads(l)
@@ -58,10 +58,10 @@ with open("/workspace/nilk_data/test.json") as f, open("test_20.jsonL", "w") as 
         offset = line["offset"]
 
         if not is_nil:
-            if id not in label_map_20:
+            if id not in label_map:
                 continue
 
-            title, text, line_number = label_map_20[id]
+            title, text, line_number = label_map[id]
 
             o.write(json.dumps({"context_left": context[:offset], "context_right": context[offset + len(mention):], "mention": mention, "label_title": title, "label": text, "label_id": line_number}) + "\n")
         else:
