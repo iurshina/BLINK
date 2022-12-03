@@ -1,7 +1,7 @@
 import torch
 import os
 
-cand_encode_path = "/workspace/BLINK_changed/data_scripts/20_percent/cand_encoding_bi_eval/"
+cand_encode_path = "/workspace/BLINK_changed/data_scripts/20_percent/cand_encoding_bi_eval_fb_models/"
 
 candidate_encoding = torch.load(cand_encode_path + '/cand_enc_0')
 encodings = [candidate_encoding]
